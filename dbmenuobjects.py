@@ -12,13 +12,51 @@ Main Menu:
 2.  Search customers
 0.  Exit
 """
+searchString = """
+Search Menu:
+    1. Search Employee Info
+    2. Search Albums by artist
+    3. Exit
+"""
+readString = """
+Read Menu:
+    1. Read Artist
+    2. Read Genres
+    3. Exit
+"""
 
 def myfunction():
-    dbinterface.listCustomers()
+    while True:
+        print(searchString)
+        sel = int(input("SubMenu Options >> "))
+        if (sel == 1):
+            searchsubFunction()
+        elif (sel == 2):
+            searchsubFunction2()
+        elif (sel == 0):
+            break
+        else:
+            print("Unrecognized Command")
+    #dbinterface.listCustomers()
     
-def function2():
-    dbinterface.searchCustomers()
-
+#def function2():
+#        while True:
+#            print(searchString)
+#            sel = int(input("SubMenu Options >> "))
+#            if (sel == 1):
+#                searchsubFunction()
+#            elif (sel == 2):
+#                searchsubFunction2()
+#            elif (sel == 0):
+#                break
+#            else:
+#                print("Unrecognized Command")
+    #dbinterface.searchCustomers()
+    
+def searchsubFunction():
+    
+def searchsubFunction2():
+    
 
 def main():
 
