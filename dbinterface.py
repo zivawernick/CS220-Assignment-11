@@ -34,4 +34,16 @@ def searchCustomers():
     # Print the results, in this case a list of tuples
     for row in result:
         print(row)
+        
+def updateEmployeeEmail():
+    #get the last name of the Employee
+     lName = input("Enter a last name: ")
+     
+     result = dbobj.searchCustomer(lName)
+     
+     
+     
+    
+     
+     
     
