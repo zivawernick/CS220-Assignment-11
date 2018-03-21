@@ -52,7 +52,5 @@ class MusicDB:
         cur = self.conn.cursor();
         params = (track,)
         cur.execute("DELETE * FROM tracks WHERE trackName like ?", params)
-        result = cur.fetchall();
-        
       
         
