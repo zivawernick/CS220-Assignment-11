@@ -34,4 +34,10 @@ def searchCustomers():
     # Print the results, in this case a list of tuples
     for row in result:
         print(row)
+        
+def deleteTracks():
+    track = input("Enter Track ID to Delete")
+    result = dbobj.searchCustomer(track)
+    for row in result:
+        trackID, trackName = row
     

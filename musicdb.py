@@ -47,5 +47,12 @@ class MusicDB:
         # Print the results, in this case a list of tuples
         return(result)
         
+        
+    def deleteTrack(self, track):
+        cur = self.conn.cursor();
+        params = (track,)
+        cur.execute("DELETE * FROM tracks WHERE trackName like ?", params)
+        result = cur.fetchall();
+        
       
         
