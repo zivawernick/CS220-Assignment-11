@@ -14,61 +14,39 @@ class MusicDB:
       self.conn.close()
     
     def listCustomers(self):       
-        # Create a cursor object to execute queries and retrieve results
         cur = self.conn.cursor()
-        
-        # Run a query: provide any SQL in a string
-        cur.execute("SELECT firstName, lastName, customerID FROM customers")
-        
+        cur.execute("SELECT firstName, lastName, customerID FROM customers")       
         return(cur)
-        # Fetch all the results
-#        result = cur.fetchmany(5)
-#        for row in result:
-#            fname, lname, salary = row
-#            print("%s %s" % (fname, lname))
-#            print("Salary: %d" % salary)
-#            print()
-#        
+
+    def listEmployee(self):
+        cur = self.conn.cursor()
+        cur.execute("SELECT FirstName, LastName, EmployeeId FROM employees")
+        return(cur)
+    
+    def listAlbum(self):
+        cur = self.conn.cursor()
+        cur.execute("SELECT AlbumId, Title, ArtistId FROM albums")
+        return(cur)
+    
+    def listgenres(self):
+        cur = self.conn.cursor()
+        cur.execute("SELECT GenreId, Name FROM genres")
+        return(cur)
         
-    def searchCustomer(self, name):    
-        # Create a cursor object to execute queries and retrieve results
-        cur = self.conn.cursor();        
-        
-        # parameters need to be in a python tuple
-        # this is how to create a tuple with a single value
-        params = (name,)
-        
-        # Run a query: provide any SQL in a string
-        cur.execute("SELECT * FROM customers WHERE lastName like ?", params)
-        
-        # Fetch all the results
-        result = cur.fetchall()
-        
-        # Print the results, in this case a list of tuples
-        return(result)
-        
-     def searchEmployee(self, name):    
-        # Create a cursor object to execute queries and retrieve results
-        cur = self.conn.cursor();        
-        
-        # parameters need to be in a python tuple
-        # this is how to create a tuple with a single value
-        params = (name,)
-        
-        # Run a query: provide any SQL in a string
-        cur.execute("SELECT * FROM employees WHERE LastName like ?", params)
-        
-        # Fetch all the results
-        result = cur.fetchall()
-        
-        # Print the results, in this case a list of tuples
-        return(result)
-        
-    def updateEmployeeEmail(self, name):
-        #create a cursor object 
+    def searchAlbum(self, name):
         cur = self.conn.cursor();
-        
         params = (name,)
+        cur.execute("SELECT albums.* FROM albums, artists WHERE artists.ArtistId = albums.ArtistId AND artists.Name like ?", params)
+        result = cur.fetchall()
+        return(result)
+    
+    def searchEmployee(self, name):
+        cur = self.conn.cursor();
+        params = (name,)
+        cur.execute("SELECT * FROM employees WHERE LastName like ?", params)
+        result = cur.fetchall()
+        return(result)
+
         
       
         

@@ -13,6 +13,18 @@ from musicdb import MusicDB
 # Create a database object that will handle all the DB stuff.
 dbobj = MusicDB()
 
+def searchArtist():
+    name = input("Enter the name of the artist: ")
+    result = dbobj.searchAlbum(name)    
+    for row in result:
+        print(row)
+
+def searchLastName():
+    name = input("Enter the last name of the employee: ")
+    result = dbobj.searchEmployee(name)
+    for row in result:
+        print(row)
+
 def listCustomers():
     cur = dbobj.listCustomers()
     
@@ -24,22 +36,34 @@ def listCustomers():
         print("ID: %d" % customerID)
         print()
         
-    
-def searchCustomers():    
-    # Get a string from the user
-    name = input("Enter a last name: ")
-    
-    result = dbobj.searchCustomer(name)
-    
-    # Print the results, in this case a list of tuples
+def readEmployee():
+    cur = dbobj.listEmployee()
+    result = cur.fetchall()
     for row in result:
-        print(row)
+        FirstName, LastName, EmployeeId = row
+        print("%s %s" % (FirstName, LastName))
+        print("ID: %d" % EmployeeId)
+        print()
+
+def readAlbums():
+    cur = dbobj.listAlbum()
+    result = cur.fetchall()
+    for row in result:
+        AlbumId, Title, ArtistId = row
+        print("%d" % (AlbumId))
+        print("Title: %s" % (Title))
+        print("ID: %d" % ArtistId)
+        print()
+
+def readgenres():
+    cur = dbobj.listgenres()
+    result = cur.fetchall()
+    for row in result:
+        GenreId, Name = row
+        print("Id: %d" % (GenreId))
+        print("Name: %s" % Name)
+        print()
         
-def updateEmployeeEmail():
-    #get the last name of the Employee
-     lName = input("Enter a last name: ")
-     
-     result = dbobj.searchCustomer(lName)
      
      
      
