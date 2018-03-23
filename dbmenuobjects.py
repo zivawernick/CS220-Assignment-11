@@ -23,7 +23,7 @@ Search Menu:
 """
 readString = """
 Read Menu:
-    1. Read Artist
+    1. Read Album
     2. Read Genres
     3. Read Employees info
     4. Read Customer info
@@ -52,10 +52,9 @@ def searchfunction():
         print(searchString)
         sel = int(input("SubMenu Options >> "))
         if (sel == 1):
-            print("Unrecognized Command")
-            #searchsubFunction()
+            dbinterface.searchLastName()
         elif (sel == 2):
-            print("Unrecognized Command")
+            dbinterface.searchArtist()
         elif (sel == 0):
             break
         else:
@@ -66,9 +65,13 @@ def readfunction():
         print(readString)
         sel = int(input("SubMenu Options >> "))
         if (sel == 1):
-            print("Unrecognized Command")
+            dbinterface.readAlbums()
         elif (sel == 2):
-            print("Unrecognized Command")
+            dbinterface.readgenres()
+        elif (sel == 3):
+            dbinterface.readEmployee()
+        elif (sel == 4):
+            dbinterface.listCustomers()
         elif (sel == 0):
             break
         else:
