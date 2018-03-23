@@ -1,5 +1,4 @@
 
-
 # Database User Interface
 #
 # Note that these functions contain input and output
@@ -35,7 +34,7 @@ def searchCustomers():
     for row in result:
         print(row)
         
-def deleteTracks():
+def deleteTrack():
     track = input("Enter Track ID to Delete")
     result = dbobj.searchCustomer(track)
     for row in result:
