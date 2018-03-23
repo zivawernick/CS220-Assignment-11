@@ -1,19 +1,20 @@
 # -*- coding: utf-8 -*-
+
 """
 Created on Sun Mar 18 17:26:53 2018
-
 @author: your name here
 """
+
 import dbinterface
 
 menuString = """
-Main Menu:
-1.  Search
-2.  Read
-3.  Create
-4.  Update
-5.  Delete 
-0.  Exit
+    Main Menu:
+    1.  Search
+    2.  Read
+    3.  Create
+    4.  Update
+    5.  Delete 
+    0.  Exit
 """
 searchString = """
 Search Menu:
@@ -28,7 +29,7 @@ Read Menu:
     3. Read Employees info
     4. Read Customer info
     0. Exit
-"""
+
 createString = """
 Create Menu:
     1. Create Employee
@@ -87,6 +88,19 @@ def createfunction():
         else:
             print("Unrecognized Command")
 
+def createfunction():
+    while True:
+        print(createString)
+        sel = int(input("SubMenu Options >> "))
+        if (sel == 1):
+            print("Unrecognized Command")
+        elif (sel == 2):
+            print("Unrecognized Command")
+        elif (sel == 0):
+            break
+        else:
+            print("Unrecognized Command")
+            
 def updatefunction():
     while True:
         print(updateString)
@@ -105,9 +119,9 @@ def deletefunction():
         print(deleteString)
         sel = int(input("SubMenu Options >> "))
         if (sel == 1):
-            print("Unrecognized Command")
+            deleteTrack()
         elif (sel == 2):
-            print("Unrecognized Command")
+            deleteInvoice()
         elif (sel == 0):
             break
         else:

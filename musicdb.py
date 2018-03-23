@@ -1,12 +1,13 @@
-# -*- coding: utf-8 -*-
+    # -*- coding: utf-8 -*-
 """
-Created on Sun Mar 18 18:24:00 2018
+    Created on Sun Mar 18 18:24:00 2018
+    @author: your name here
+"""
 
-@author: your name here
-"""
 import sqlite3 as db
-
+    
 class MusicDB:
+    
     def __init__( self):
       self.conn = db.connect("music.db")
       
@@ -22,13 +23,13 @@ class MusicDB:
         
         return(cur)
         # Fetch all the results
-#        result = cur.fetchmany(5)
-#        for row in result:
-#            fname, lname, salary = row
-#            print("%s %s" % (fname, lname))
-#            print("Salary: %d" % salary)
-#            print()
-#        
+    #        result = cur.fetchmany(5)
+    #        for row in result:
+    #            fname, lname, salary = row
+    #            print("%s %s" % (fname, lname))
+    #            print("Salary: %d" % salary)
+    #            print()
+    #        
         
     def searchCustomer(self, name):    
         # Create a cursor object to execute queries and retrieve results
@@ -46,8 +47,8 @@ class MusicDB:
         
         # Print the results, in this case a list of tuples
         return(result)
-        
-     def searchEmployee(self, name):    
+            
+    def searchEmployee(self, name):    
         # Create a cursor object to execute queries and retrieve results
         cur = self.conn.cursor();        
         
@@ -63,12 +64,16 @@ class MusicDB:
         
         # Print the results, in this case a list of tuples
         return(result)
-        
+            
     def updateEmployeeEmail(self, name):
         #create a cursor object 
         cur = self.conn.cursor();
-        
         params = (name,)
-        
+         
+
+    def deleteTrack(self, track):
+        cur = self.conn.cursor();
+        params = (track,)
+        cur.execute("DELETE * FROM tracks WHERE trackName like ?", params)
       
         
