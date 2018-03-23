@@ -39,4 +39,10 @@ def deleteTrack():
     result = dbobj.searchCustomer(track)
     for row in result:
         trackID, trackName = row
+        
+def updateEmployeeEmail():
+    #get the last name of the Employee
+     lName = input("Enter a last name: ")
+     
+     result = dbobj.searchCustomer(lName)
     

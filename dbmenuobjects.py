@@ -29,7 +29,7 @@ Read Menu:
     3. Read Employees info
     4. Read Customer info
     0. Exit
-"""
+
 createString = """
 Create Menu:
     1. Create Employee
@@ -88,6 +88,19 @@ def createfunction():
         else:
             print("Unrecognized Command")
 
+def createfunction():
+    while True:
+        print(createString)
+        sel = int(input("SubMenu Options >> "))
+        if (sel == 1):
+            print("Unrecognized Command")
+        elif (sel == 2):
+            print("Unrecognized Command")
+        elif (sel == 0):
+            break
+        else:
+            print("Unrecognized Command")
+            
 def updatefunction():
     while True:
         print(updateString)

@@ -70,7 +70,7 @@ class MusicDB:
         cur = self.conn.cursor();
         params = (name,)
          
-        
+
     def deleteTrack(self, track):
         cur = self.conn.cursor();
         params = (track,)
