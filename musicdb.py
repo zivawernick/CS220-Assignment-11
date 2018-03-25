@@ -46,7 +46,24 @@ class MusicDB:
         cur.execute("SELECT * FROM employees WHERE LastName like ?", params)
         result = cur.fetchall()
         return(result)
-
         
+    def updateEmployeeEmail(self, name, empID, email):
+        #create a cursor object 
+        cur = self.conn.cursor();
+        params = (email, name, empID)
+        print("You updated " + name + "'s email to: " + email)
+        #change the database with new info 
+        cur.execute("Update employees Set email = ? Where LastName = ? and EmployeeId = ?", params)
+        #commit the changes 
+        self.conn.commit()
       
+    def updateCustomerEmail(self, name, cusID, email):
+        #create a cursor object 
+        cur = self.conn.cursor();
+        params = (email, name, cusID)
+        print("You updated " + name + "'s email to: " + email)
+        #change the database with new info 
+        cur.execute("Update customers Set email = ? Where LastName = ? and CustomerId = ?", params)
+        #commit the changes 
+        self.conn.commit()
         
