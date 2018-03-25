@@ -37,8 +37,8 @@ Create Menu:
 """
 updateString = """
 Update Menu:
-    1. Update Employee info
-    2. Update Customer info
+    1. Update Employee email
+    2. Update Customer email
     0. Exit
 """
 deleteString = """
@@ -95,9 +95,9 @@ def updatefunction():
         print(updateString)
         sel = int(input("SubMenu Options >> "))
         if (sel == 1):
-            print("Unrecognized Command")
+            dbinterface.updateEmployeeEmail()
         elif (sel == 2):
-            print("Unrecognized Command")
+            dbinterface.updateCustomerEmail()
         elif (sel == 0):
             break
         else:
