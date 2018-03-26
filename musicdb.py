@@ -54,11 +54,9 @@ class MusicDB:
         return(results)
 
     def createCustomer(self, FirstName, LastName, CustomerId, Address, City,
-                  State, Country, PostalCode, Phone, Email):
+                  State, Country, PostalCode, Phone, Email)
         #Create a cursor object to execute queries and review results
-        cur = self.conn.cursor();
-        
-        #Create the python tuple with all the values
+        cur = self.conn.cursor()
         params = (FirstName, LastName, CustomerId, Address, City,
                   State, Country, PostalCode, Phone, Email, '4')
         # Run a query
@@ -66,6 +64,7 @@ class MusicDB:
         cur.execute("Insert into customers (FirstName, LastName, CustomerId, Address, City, State, Country, PostalCode, Phone, Email, SupportRepId) Values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", params)
         #commit the changes 
         self.conn.commit()
+
             
     def createEmployee(self):
         # Create a cursor object to execute queries and review results
