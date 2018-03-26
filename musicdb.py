@@ -54,7 +54,7 @@ class MusicDB:
         return(results)
 
     def createCustomer(self, FirstName, LastName, CustomerId, Address, City,
-                  State, Country, PostalCode, Phone, Email)
+                  State, Country, PostalCode, Phone, Email):
         #Create a cursor object to execute queries and review results
         cur = self.conn.cursor()
         params = (FirstName, LastName, CustomerId, Address, City,
@@ -66,7 +66,9 @@ class MusicDB:
         self.conn.commit()
 
             
-    def createEmployee(self):
+    def createEmployee(self, EmployeeId, LastName, FirstName, Title, ReportsTo, BirthDate,
+                  HireDate, Address, City, State, Country, PostalCode, Phone,
+                  Fax, Email):
         # Create a cursor object to execute queries and review results
         cur = self.conn.cursor();
         
@@ -81,7 +83,7 @@ class MusicDB:
                     "PostalCode, Phone, Fax, Email From employees", params)
 
         # Fetch all the results
-        result = cur.fetchall()
+        results = cur.fetchall()
         for row in results:
             EmployeeId, LastName, FirstName, Title, ReportsTo, BirthDate,
             HireDate, Address, City, State, Country, PostalCode, Phone,
@@ -118,4 +120,21 @@ class MusicDB:
         #change the database with new info 
         cur.execute("Update customers Set email = ? Where LastName = ? and CustomerId = ?", params)
         #commit the changes 
+        self.conn.commit()
+        
+    def deleteTrack(self, track):
+        cur = self.conn.cursor()
+        params = (track,)
+        print("You deleted track ID " + track)
+        cur.execute("DELETE FROM tracks WHERE TrackID = ?", params)
+        cur.execute("DELETE FROM invoice_items WHERE TrackID = ?", params)
+        cur.execute("DELETE FROM playlist_track WHERE TrackID = ?", params)
+        self.conn.commit()
+    
+    def deleteInvoice(self, invoiceID):
+        cur = self.conn.cursor();
+        params = (invoiceID)
+        print("You deleted the invoice with invoiceID " + invoiceID)
+        cur.execute("DELETE FROM invoices WHERE invoiceID = ?", params)
+        cur.execute("DELETE FROM invoice_items WHERE invoiceID = ?", params)
         self.conn.commit()

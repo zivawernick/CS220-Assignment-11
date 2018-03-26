@@ -100,9 +100,13 @@ def createCustomer():
                   State, Country, PostalCode, Phone, Email)
     print()
 
+def deleteTrack():
+    trackID = input("Enter trackID of the track you want to delete: ")
+    dbobj.deleteTrack(trackID)
+    print()
 
-
-
-
-
-
+def deleteInvoice():
+    invoiceID = input("Enter invoiceID of the invoice you want to delete: ")
+    dbobj.deleteInvoice(invoiceID)
+    print()
+        
