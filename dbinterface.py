@@ -101,7 +101,6 @@ def createCustomer():
     print()
 
 def deleteTrack():
-    track = input("Enter Track ID to Delete:")
     trackID = input("Enter trackID of the track you want to delete: ")
     dbobj.deleteTrack(trackID)
 
