@@ -102,10 +102,10 @@ def createCustomer():
 
 def deleteTrack():
     track = input("Enter Track ID to Delete:")
-    result = dbobj.searchTracks(track)
-    for row in result:
+    trackID = input("Enter trackID of the track you want to delete: ")
+    dbobj.deleteTrack(trackID)
 
-
-
-
-
+def deleteInvoice():
+    invoiceID = input("Enter invoiceID of the invoice you want to delete: ")
+    dbobj.deleteInvoice(invoiceID)
+        

@@ -53,8 +53,8 @@ class MusicDB:
         results = cur.fetchone
         return(results)
 
-    def createCustomer(self, FirstName, LastName, CustomerId, Address, City,
-                  State, Country, PostalCode, Phone, Email)
+    def createCustomer(self, FirstName, LastName, CustomerId, Address, City, 
+                       State, Country, PostalCode, Phone, Email):
         #Create a cursor object to execute queries and review results
         cur = self.conn.cursor()
         params = (FirstName, LastName, CustomerId, Address, City,
@@ -122,6 +122,15 @@ class MusicDB:
         
     def deleteTrack(self, track):
         cur = self.conn.cursor();
-        params = (trackID, trackName)
-        print("You deleted the track" + trackName)
-        cur.execute("DELETE tracks where trackID = ?", params)
+        params = (track)
+        print("You deleted track ID " + track)
+        cur.execute("DELETE FROM tracks WHERE TrackID = ?", params)
+        cur.execute("DELETE FROM invoice_items WHERE TrackID = ?", params)
+        cur.execute("DELETE FROM playlist_track WHERE TrackID = ?", params)
+    
+    def deleteInvoice(self, invoiceID):
+        cur = self.conn.cursor();
+        params = (invoiceID)
+        print("You deleted the invoice with invoiceID " + invoiceID)
+        cur.execute("DELETE FROM invoices WHERE invoiceID = ?", params)
+        cur.execute("DELETE FROM invoice_items WHERE invoiceID = ?", params)
