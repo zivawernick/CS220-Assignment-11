@@ -53,8 +53,8 @@ class MusicDB:
         results = cur.fetchone
         return(results)
 
-    def createCustomer(self, FirstName, LastName, CustomerId, Address, City, 
-                       State, Country, PostalCode, Phone, Email):
+    def createCustomer(self, FirstName, LastName, CustomerId, Address, City,
+                  State, Country, PostalCode, Phone, Email):
         #Create a cursor object to execute queries and review results
         cur = self.conn.cursor()
         params = (FirstName, LastName, CustomerId, Address, City,
@@ -66,7 +66,9 @@ class MusicDB:
         self.conn.commit()
 
             
-    def createEmployee(self):
+    def createEmployee(self, EmployeeId, LastName, FirstName, Title, ReportsTo, BirthDate,
+                  HireDate, Address, City, State, Country, PostalCode, Phone,
+                  Fax, Email):
         # Create a cursor object to execute queries and review results
         cur = self.conn.cursor();
         
@@ -81,7 +83,7 @@ class MusicDB:
                     "PostalCode, Phone, Fax, Email From employees", params)
 
         # Fetch all the results
-        result = cur.fetchall()
+        results = cur.fetchall()
         for row in results:
             EmployeeId, LastName, FirstName, Title, ReportsTo, BirthDate,
             HireDate, Address, City, State, Country, PostalCode, Phone,
