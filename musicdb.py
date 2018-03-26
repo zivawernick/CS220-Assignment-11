@@ -133,7 +133,7 @@ class MusicDB:
     
     def deleteInvoice(self, invoiceID):
         cur = self.conn.cursor();
-        params = (invoiceID)
+        params = (invoiceID,)
         print("You deleted the invoice with invoiceID " + invoiceID)
         cur.execute("DELETE FROM invoices WHERE invoiceID = ?", params)
         cur.execute("DELETE FROM invoice_items WHERE invoiceID = ?", params)
