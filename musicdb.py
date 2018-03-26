@@ -41,44 +41,34 @@ class MusicDB:
         return(result)
     
     def searchEmployee(self, name):
-        cur = self.conn.cursor();
+        cur = self.conn.cursor()
         params = (name,)
         cur.execute("SELECT * FROM employees WHERE LastName like ?", params)
         result = cur.fetchall()
         return(result)
         
+    def findnetID(self, IdType, table):
+        cur = self.conn.cursor()
+        cur.execute("Select MAX(" + IdType + " + 1) from " + table)
+        results = cur.fetchone
+        return(results)
 
-    def createCustomer(self):
+    def createCustomer(self, FirstName, LastName, CustomerId, Address, City,
+                  State, Country, PostalCode, Phone, Email):
         #Create a cursor object to execute queries and review results
-        cur = self.conn.cursor();
-        
-        #Create the python tuple with all the values
-        params = (FirstName, LastName, CustomerId, Company, Address, City,
-                  State, Country, PostalCode, Phone, Fax, Email, SupportRedId)
-        
+        cur = self.conn.cursor()
+        params = (FirstName, LastName, CustomerId, Address, City,
+                  State, Country, PostalCode, Phone, Email, '4')
         # Run a query
-        cur.execute("Select FirstName, LastName, CustomerId, Company,"
-                    "Address, City, State, Country, PostalCode, Phone,"
-                    "Fax, Email, SupportRedId From customers", params)
-        
-        # Fetch all the results
-        result = cur.fetchall()
-        for row in results:
-            FirstName, LastName, CustomerId, Company, Address,
-            City, State, Country, PostalCode = row
+        #this is not working yet but I am not sure how to fix it - in SQLite this is the setup for the querry 
+        cur.execute("Insert into customers (FirstName, LastName, CustomerId, Address, City, State, Country, PostalCode, Phone, Email, SupportRepId) Values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", params)
+        #commit the changes 
+        self.conn.commit()
+
             
-            print("%s %s" % (FirstName, LastName))
-            print("ID: %d" % CustomerId)
-            print("Company: %s" % Company)
-            print("Address: %s %s %s %s %s" % (Address, City, State, Country,
-                                               PostalCode))
-            print("Phone: %s" % Phone)
-            print("Fax: %s" % Fax)
-            print("Email: %s" % Email)
-            print("SupportRepId: %d" % SupportRepId)
-            print()
-            
-    def createEmployee(self):
+    def createEmployee(self, EmployeeId, LastName, FirstName, Title, ReportsTo, BirthDate,
+                  HireDate, Address, City, State, Country, PostalCode, Phone,
+                  Fax, Email):
         # Create a cursor object to execute queries and review results
         cur = self.conn.cursor();
         
@@ -93,7 +83,7 @@ class MusicDB:
                     "PostalCode, Phone, Fax, Email From employees", params)
 
         # Fetch all the results
-        result = cur.fetchall()
+        results = cur.fetchall()
         for row in results:
             EmployeeId, LastName, FirstName, Title, ReportsTo, BirthDate,
             HireDate, Address, City, State, Country, PostalCode, Phone,

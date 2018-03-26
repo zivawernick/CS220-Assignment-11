@@ -74,12 +74,30 @@ def updateEmployeeEmail():
 
 
 def updateCustomerEmail():
-    dbobj.__init__()
     #get the last name of the Employee
     lName = input("Enter a last name: ")
     cusID = input("Enter the Customers ID: ")
     newEmail = input("Enter the new email: ")
     dbobj.updateCustomerEmail(lName, cusID, newEmail)
+    print()
+    
+def createCustomer():
+    idCus = "CustomerId"
+    TableName = "customers"
+    #get all the infomation you need 
+    print("please fill in all the infomation to make a new customer profile")
+    FirstName = input("Enter your first name: ")
+    LastName = input("Enter your last name: ")
+    CustomerId = dbobj.findnetID(idCus, TableName)
+    Address = input("Enter your address: ")
+    City = input("Enter your city: ")
+    State = input("Enter your state: ")
+    Country = input("Enter your country: ")
+    PostalCode = input("Enter your postal code: ")
+    Phone = input("Enter your phone number: ")
+    Email = input("Enter your email address: ")
+    dbobj.createCustomer(FirstName, LastName, CustomerId, Address, City,
+                  State, Country, PostalCode, Phone, Email)
     print()
 
 
