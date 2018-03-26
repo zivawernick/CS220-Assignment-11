@@ -14,39 +14,40 @@ class MusicDB:
       self.conn.close()
     
     def listCustomers(self):       
-        # Create a cursor object to execute queries and retrieve results
         cur = self.conn.cursor()
-        
-        # Run a query: provide any SQL in a string
-        cur.execute("SELECT firstName, lastName, customerID FROM customers")
-        
+        cur.execute("SELECT firstName, lastName, customerID FROM customers")       
         return(cur)
-        # Fetch all the results
-#        result = cur.fetchmany(5)
-#        for row in result:
-#            fname, lname, salary = row
-#            print("%s %s" % (fname, lname))
-#            print("Salary: %d" % salary)
-#            print()
-#        
+
+    def listEmployee(self):
+        cur = self.conn.cursor()
+        cur.execute("SELECT FirstName, LastName, EmployeeId FROM employees")
+        return(cur)
+    
+    def listAlbum(self):
+        cur = self.conn.cursor()
+        cur.execute("SELECT AlbumId, Title, ArtistId FROM albums")
+        return(cur)
+    
+    def listgenres(self):
+        cur = self.conn.cursor()
+        cur.execute("SELECT GenreId, Name FROM genres")
+        return(cur)
         
-    def searchCustomer(self, name):    
-        # Create a cursor object to execute queries and retrieve results
-        cur = self.conn.cursor();        
-        
-        # parameters need to be in a python tuple
-        # this is how to create a tuple with a single value
+    def searchAlbum(self, name):
+        cur = self.conn.cursor();
         params = (name,)
-        
-        # Run a query: provide any SQL in a string
-        cur.execute("SELECT * FROM customers WHERE lastName like ?", params)
-        
-        # Fetch all the results
+        cur.execute("SELECT albums.* FROM albums, artists WHERE artists.ArtistId = albums.ArtistId AND artists.Name like ?", params)
         result = cur.fetchall()
-        
-        # Print the results, in this case a list of tuples
+        return(result)
+    
+    def searchEmployee(self, name):
+        cur = self.conn.cursor();
+        params = (name,)
+        cur.execute("SELECT * FROM employees WHERE LastName like ?", params)
+        result = cur.fetchall()
         return(result)
         
+
     def createCustomer(self):
         #Create a cursor object to execute queries and review results
         cur = self.conn.cursor();
@@ -90,7 +91,7 @@ class MusicDB:
         cur.execute("Select EmployeeId, LastName, FirstName, Title, ReportsTo,"
                     "BirthDate, HireDate, Address, City, State, Country," 
                     "PostalCode, Phone, Fax, Email From employees", params)
-        
+
         # Fetch all the results
         result = cur.fetchall()
         for row in results:
@@ -110,3 +111,23 @@ class MusicDB:
             print("Fax: %s" % Fax)
             print("Email: %s" % Email)
             print()
+            
+    def updateEmployeeEmail(self, name, empID, email):
+        #create a cursor object 
+        cur = self.conn.cursor();
+        params = (email, name, empID)
+        print("You updated " + name + "'s email to: " + email)
+        #change the database with new info 
+        cur.execute("Update employees Set email = ? Where LastName = ? and EmployeeId = ?", params)
+        #commit the changes 
+        self.conn.commit()
+      
+    def updateCustomerEmail(self, name, cusID, email):
+        #create a cursor object 
+        cur = self.conn.cursor();
+        params = (email, name, cusID)
+        print("You updated " + name + "'s email to: " + email)
+        #change the database with new info 
+        cur.execute("Update customers Set email = ? Where LastName = ? and CustomerId = ?", params)
+        #commit the changes 
+        self.conn.commit()
