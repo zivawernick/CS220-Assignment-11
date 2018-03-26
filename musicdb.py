@@ -123,16 +123,18 @@ class MusicDB:
         self.conn.commit()
         
     def deleteTrack(self, track):
-        cur = self.conn.cursor();
-        params = (track)
+        cur = self.conn.cursor()
+        params = (track,)
         print("You deleted track ID " + track)
         cur.execute("DELETE FROM tracks WHERE TrackID = ?", params)
         cur.execute("DELETE FROM invoice_items WHERE TrackID = ?", params)
         cur.execute("DELETE FROM playlist_track WHERE TrackID = ?", params)
+        self.conn.commit()
     
     def deleteInvoice(self, invoiceID):
         cur = self.conn.cursor();
-        params = (invoiceID)
+        params = (invoiceID,)
         print("You deleted the invoice with invoiceID " + invoiceID)
         cur.execute("DELETE FROM invoices WHERE invoiceID = ?", params)
         cur.execute("DELETE FROM invoice_items WHERE invoiceID = ?", params)
+        self.conn.commit()
