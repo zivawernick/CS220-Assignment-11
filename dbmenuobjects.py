@@ -1,20 +1,19 @@
 # -*- coding: utf-8 -*-
-
 """
 Created on Sun Mar 18 17:26:53 2018
+
 @author: your name here
 """
-
 import dbinterface
 
 menuString = """
-    Main Menu:
-    1.  Search
-    2.  Read
-    3.  Create
-    4.  Update
-    5.  Delete 
-    0.  Exit
+Main Menu:
+1.  Search
+2.  Read
+3.  Create
+4.  Update
+5.  Delete 
+0.  Exit
 """
 searchString = """
 Search Menu:
@@ -24,12 +23,12 @@ Search Menu:
 """
 readString = """
 Read Menu:
-    1. Read Artist
+    1. Read Album
     2. Read Genres
     3. Read Employees info
     4. Read Customer info
     0. Exit
-
+"""
 createString = """
 Create Menu:
     1. Create Employee
@@ -38,8 +37,8 @@ Create Menu:
 """
 updateString = """
 Update Menu:
-    1. Update Employee info
-    2. Update Customer info
+    1. Update Employee email
+    2. Update Customer email
     0. Exit
 """
 deleteString = """
@@ -53,10 +52,9 @@ def searchfunction():
         print(searchString)
         sel = int(input("SubMenu Options >> "))
         if (sel == 1):
-            print("Unrecognized Command")
-            #searchsubFunction()
+            dbinterface.searchLastName()
         elif (sel == 2):
-            print("Unrecognized Command")
+            dbinterface.searchArtist()
         elif (sel == 0):
             break
         else:
@@ -67,9 +65,13 @@ def readfunction():
         print(readString)
         sel = int(input("SubMenu Options >> "))
         if (sel == 1):
-            print("Unrecognized Command")
+            dbinterface.readAlbums()
         elif (sel == 2):
-            print("Unrecognized Command")
+            dbinterface.readgenres()
+        elif (sel == 3):
+            dbinterface.readEmployee()
+        elif (sel == 4):
+            dbinterface.listCustomers()
         elif (sel == 0):
             break
         else:
@@ -88,27 +90,14 @@ def createfunction():
         else:
             print("Unrecognized Command")
 
-def createfunction():
-    while True:
-        print(createString)
-        sel = int(input("SubMenu Options >> "))
-        if (sel == 1):
-            print("Unrecognized Command")
-        elif (sel == 2):
-            print("Unrecognized Command")
-        elif (sel == 0):
-            break
-        else:
-            print("Unrecognized Command")
-            
 def updatefunction():
     while True:
         print(updateString)
         sel = int(input("SubMenu Options >> "))
         if (sel == 1):
-            print("Unrecognized Command")
+            dbinterface.updateEmployeeEmail()
         elif (sel == 2):
-            print("Unrecognized Command")
+            dbinterface.updateCustomerEmail()
         elif (sel == 0):
             break
         else:
@@ -119,9 +108,9 @@ def deletefunction():
         print(deleteString)
         sel = int(input("SubMenu Options >> "))
         if (sel == 1):
-            deleteTrack()
+            dbinterface.deleteTrack()
         elif (sel == 2):
-            deleteInvoice()
+            dbinterface.deleteInvoice()
         elif (sel == 0):
             break
         else:
