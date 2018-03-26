@@ -32,7 +32,7 @@ Read Menu:
 createString = """
 Create Menu:
     1. Create Employee
-    2. Create Customer profile
+    2. Create Customer log in
     0. Exit
 """
 updateString = """
@@ -84,7 +84,7 @@ def createfunction():
         if (sel == 1):
             print("Unrecognized Command")
         elif (sel == 2):
-            dbinterface.createCustomer()
+            print("Unrecognized Command")
         elif (sel == 0):
             break
         else:
