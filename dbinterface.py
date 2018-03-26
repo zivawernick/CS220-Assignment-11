@@ -82,7 +82,10 @@ def updateCustomerEmail():
     dbobj.updateCustomerEmail(lName, cusID, newEmail)
     print()
 
-
+def deleteTrack():
+    track = input("Enter Track ID to Delete:")
+    result = dbobj.searchTracks(track)
+    for row in result:
 
 
 

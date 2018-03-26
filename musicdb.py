@@ -131,3 +131,9 @@ class MusicDB:
         cur.execute("Update customers Set email = ? Where LastName = ? and CustomerId = ?", params)
         #commit the changes 
         self.conn.commit()
+        
+    def deleteTrack(self, track):
+        cur = self.conn.cursor();
+        params = (trackID, trackName)
+        print("You deleted the track" + trackName)
+        cur.execute("DELETE tracks where trackID = ?", params)

@@ -108,9 +108,9 @@ def deletefunction():
         print(deleteString)
         sel = int(input("SubMenu Options >> "))
         if (sel == 1):
-            print("Unrecognized Command")
+            dbinterface.deleteTrack()
         elif (sel == 2):
-            print("Unrecognized Command")
+            dbinterface.deleteInvoice()
         elif (sel == 0):
             break
         else:
