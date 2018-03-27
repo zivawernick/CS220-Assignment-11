@@ -46,12 +46,6 @@ class MusicDB:
         cur.execute("SELECT * FROM employees WHERE LastName like ?", params)
         result = cur.fetchall()
         return(result)
-        
-    def findnetID(self, IdType, table):
-        cur = self.conn.cursor()
-        cur.execute("Select MAX(" + IdType + " + 1) from " + table)
-        results = cur.fetchone
-        return(results)
 
     def createCustomer(self, FirstName, LastName, CustomerId, Address, City,
                   State, Country, PostalCode, Phone, Email):
@@ -78,29 +72,10 @@ class MusicDB:
                   Fax, Email)
         
         # Run a query
-        cur.execute("Select EmployeeId, LastName, FirstName, Title, ReportsTo,"
-                    "BirthDate, HireDate, Address, City, State, Country," 
-                    "PostalCode, Phone, Fax, Email From employees", params)
-
-        # Fetch all the results
-        results = cur.fetchall()
-        for row in results:
-            EmployeeId, LastName, FirstName, Title, ReportsTo, BirthDate,
-            HireDate, Address, City, State, Country, PostalCode, Phone,
-            Fax, Email = row
-                  
-            print("Employee ID: %d" % EmployeeId)
-            print("%s %s" % (FirstName, LastName))
-            print("Title: %s" % Title)
-            print("Reports To: %s" % ReportsTo)
-            print("Birth Date: %s" % BirthDate)
-            print("Hire Date: %s" % HireDate)
-            print("Address: %s %s %s %s %s" % (Address, City, State,
-                                                     Country, PostalCode))
-            print("Phone: %s" % Phone)
-            print("Fax: %s" % Fax)
-            print("Email: %s" % Email)
-            print()
+        cur.execute("Insert into employees (EmployeeId, LastName, FirstName, Title, ReportsTo, BirthDate, HireDate, Address, City, State, Country, PostalCode, Phone, Fax, Email) Values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", params)
+        
+        # Commit the changes
+        self.conn.commit()
             
     def updateEmployeeEmail(self, name, empID, email):
         #create a cursor object 

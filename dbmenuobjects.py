@@ -82,7 +82,7 @@ def createfunction():
         print(createString)
         sel = int(input("SubMenu Options >> "))
         if (sel == 1):
-            print("Unrecognized Command")
+            dbinterface.createEmployee()
         elif (sel == 2):
             dbinterface.createCustomer()
         elif (sel == 0):
@@ -108,9 +108,9 @@ def deletefunction():
         print(deleteString)
         sel = int(input("SubMenu Options >> "))
         if (sel == 1):
-            dbinterface.deleteTrack()
+            print("Unrecognized Command")
         elif (sel == 2):
-            dbinterface.deleteInvoice()
+            print("Unrecognized Command")
         elif (sel == 0):
             break
         else:
