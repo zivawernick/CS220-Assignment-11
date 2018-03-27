@@ -46,12 +46,6 @@ class MusicDB:
         cur.execute("SELECT * FROM employees WHERE LastName like ?", params)
         result = cur.fetchall()
         return(result)
-        
-    def findnetID(self, IdType, table):
-        cur = self.conn.cursor()
-        cur.execute("Select MAX(" + IdType + " + 1) from " + table)
-        results = cur.fetchone
-        return(results)
 
     def createCustomer(self, FirstName, LastName, CustomerId, Address, City,
                   State, Country, PostalCode, Phone, Email):

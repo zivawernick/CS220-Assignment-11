@@ -82,13 +82,11 @@ def updateCustomerEmail():
     print()
     
 def createCustomer():
-    idCus = "CustomerId"
-    TableName = "customers"
     #get all the infomation you need 
     print("please fill in all the infomation to make a new customer profile")
     FirstName = input("Enter your first name: ")
     LastName = input("Enter your last name: ")
-    CustomerId = dbobj.findnetID(idCus, TableName)
+    CustomerId = input("Enter your ID (must be above 1000):")
     Address = input("Enter your address: ")
     City = input("Enter your city: ")
     State = input("Enter your state: ")
@@ -98,6 +96,28 @@ def createCustomer():
     Email = input("Enter your email address: ")
     dbobj.createCustomer(FirstName, LastName, CustomerId, Address, City,
                   State, Country, PostalCode, Phone, Email)
+    print()
+    
+def createEmployee():
+    #get all the infomation you need 
+    print("please fill in all the infomation to make a new Employee profile")
+    FirstName = input("Enter your first name: ")
+    LastName = input("Enter your last name: ")
+    EmployeeId = input("Enter your employee ID (cannont be below 9): ")
+    Title = input("Your new title: ")
+    ReportsTo = input("Enter the ID of your boss: ")
+    Birthday = input("Enter your birthday? (yyyy-mm-dd): ")
+    HireDate= input("Enter the day you were hired (yyyy-mm-dd): ")
+    Address = input("Enter your address: ")
+    City = input("Enter your city: ")
+    State = input("Enter your state: ")
+    Country = input("Enter your country: ")
+    PostalCode = input("Enter your postal code: ")
+    Phone = input("Enter your phone number: ")
+    Fax = input("Enter your Fax number: ")
+    Email = input("Enter your email address: ")
+    dbobj.createEmployee(EmployeeId, LastName, FirstName, Title, ReportsTo, Birthday, HireDate, 
+                         Address, City, State, Country, PostalCode, Phone, Fax, Email)
     print()
 
 def deleteTrack():
